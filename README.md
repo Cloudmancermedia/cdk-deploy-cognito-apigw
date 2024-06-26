@@ -16,7 +16,7 @@ Confirm the user
   --confirmation-code <code> \
   --profile <profile>`
 
-Log in - This will grant tokens
+Log in - This will grant tokens. IdToken is what we will need to test our endpoint.
 `aws cognito-idp initiate-auth \
   --client-id <clientid> \
   --auth-flow USER_PASSWORD_AUTH \
