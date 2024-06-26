@@ -1,14 +1,27 @@
 # Welcome to your CDK TypeScript project
 
-This is a blank project for CDK development with TypeScript.
+This repository outlines how to create a cognito user pool and how to assign it as an authorizer for an API gateway. Profile is not strictly necessary based on how you configured the AWS CLI. More info here: https://youtu.be/rBcZoeCu-K4
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+Create a user
+`aws cognito-idp sign-up \
+  --client-id <clientid> \
+  --username <email> \
+  --password <password> \
+  --profile <profile>`
 
-## Useful commands
+Confirm the user
+`aws cognito-idp confirm-sign-up \
+  --client-id <clientid> \
+  --username <email> \
+  --confirmation-code <code> \
+  --profile <profile>`
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `npx cdk deploy`  deploy this stack to your default AWS account/region
-* `npx cdk diff`    compare deployed stack with current state
-* `npx cdk synth`   emits the synthesized CloudFormation template
+Log in - This will grant tokens
+`aws cognito-idp initiate-auth \
+  --client-id <clientid> \
+  --auth-flow USER_PASSWORD_AUTH \
+  --auth-parameters USERNAME=<email>,PASSWORD=<password> \
+  --profile <profile>`
+
+Test out an endpoint
+`curl -H "Authorization: Bearer <IdToken>" https://<apiId>.execute-api.<region>.amazonaws.com/prod/myendpoint`

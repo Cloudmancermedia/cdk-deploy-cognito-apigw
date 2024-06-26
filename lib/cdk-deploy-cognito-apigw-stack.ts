@@ -26,15 +26,13 @@ export class CdkDeployCognitoApigwStack extends cdk.Stack {
       accountRecovery: cognito.AccountRecovery.EMAIL_ONLY,
     });
 
-    // Output the User Pool ID
-    new cdk.CfnOutput(this, 'UserPoolId', {
-      value: userPool.userPoolId,
-    });
-
     // Define the Cognito User Pool Client
     const userPoolClient = new cognito.UserPoolClient(this, 'MyUserPoolClient', {
       userPool,
       generateSecret: false,
+      authFlows: {
+        userPassword: true,
+      },
     });
 
     // Output the User Pool Client ID
@@ -52,7 +50,7 @@ export class CdkDeployCognitoApigwStack extends cdk.Stack {
           return {
             statusCode: 200,
             headers: { 'Content-Type': 'text/plain' },
-            body: \`Hello, \${event.requestContext.authorizer.claims['cognito:username']}!\`,
+            body: \`Hello, \${event.requestContext.authorizer.claims['email']}!\`,
           };
         };
       `),
@@ -75,11 +73,6 @@ export class CdkDeployCognitoApigwStack extends cdk.Stack {
     resource.addMethod('GET', lambdaIntegration, {
       authorizer,
       authorizationType: apigateway.AuthorizationType.COGNITO,
-    });
-
-    // Output the API Gateway URL
-    new cdk.CfnOutput(this, 'ApiUrl', {
-      value: api.url,
     });
   }
 }
