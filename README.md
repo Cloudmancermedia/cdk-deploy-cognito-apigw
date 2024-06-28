@@ -1,4 +1,4 @@
-# Welcome to your CDK TypeScript project
+# Deploy an API Gateway using the AWD CDK for Typescript!
 
 This repository outlines how to create a cognito user pool and how to assign it as an authorizer for an API gateway. Profile is not strictly necessary based on how you configured the AWS CLI. More info here: https://youtu.be/rBcZoeCu-K4
 
