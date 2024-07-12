@@ -1,4 +1,4 @@
-import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib';
+import { CfnOutput, RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
 import { AuthorizationType, CognitoUserPoolsAuthorizer, LambdaIntegration, RestApi } from 'aws-cdk-lib/aws-apigateway';
 import { UserPool, UserPoolClient } from 'aws-cdk-lib/aws-cognito';
 import { Code, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
@@ -14,6 +14,7 @@ export class CdkDeployCognitoApigwStack extends Stack {
       selfSignUpEnabled: true,
       signInAliases: { email: true },
       autoVerify: { email: true },
+      removalPolicy: RemovalPolicy.DESTROY
     });
 
     // Define the Cognito User Pool Client
