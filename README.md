@@ -1,5 +1,7 @@
 # Deploy an API Gateway using the AWS CDK for Typescript!
 
+Watch on [YouTube](https://www.youtube.com/watch?v=N3FZWVF97n4)
+
 This repository outlines how to create a cognito user pool and how to assign it as an authorizer for an API gateway. Profile is not strictly necessary based on how you configured the AWS CLI. More info here: https://youtu.be/rBcZoeCu-K4
 
 Create a user
