@@ -1,4 +1,4 @@
-# Deploy an API Gateway using the AWS CDK for Typescript!
+# Deploy an API Gateway with Cognito Auth using the AWS CDK for Typescript!
 
 Watch on [YouTube](https://www.youtube.com/watch?v=N3FZWVF97n4)
 
